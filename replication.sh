@@ -311,13 +311,13 @@ enable_logical(){
 
   # Create publication. 
   # Note that publications default to publish: insert, update. delete, truncate.
-  execute_psql $DB01_PORT "CREATE PUBLICATION single_table FOR TABLE table1,table2;"
+  execute_psql $DB01_PORT "CREATE PUBLICATION two_tables FOR TABLE table1,table2;"
 
   # Create subscription.
   # Note: there are A LOT of options for subscriptions, synchronous logical just to name one (see CREATE SUBSCRIPTION for details).
   execute_psql $DB03_PORT "$MYTABLE1_DEFINITION"
   execute_psql $DB03_PORT "$MYTABLE2_DEFINITION"
-  execute_psql $DB03_PORT "CREATE SUBSCRIPTION single_table_sub CONNECTION 'host=localhost port=$DB01_PORT user=postgres password=postgres dbname=postgres' PUBLICATION single_table;"
+  execute_psql $DB03_PORT "CREATE SUBSCRIPTION single_table_sub CONNECTION 'host=localhost port=$DB01_PORT user=postgres password=postgres dbname=postgres' PUBLICATION two_tables;"
 }
 
 help(){
