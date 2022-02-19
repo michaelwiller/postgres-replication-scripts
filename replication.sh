@@ -68,7 +68,7 @@ showlog(){
   esac
 }
 execute_psql(){
-  echo $2
+  echo "$1: $2"
   sleep 1
   psql -p $1 -c "$2"
 }
